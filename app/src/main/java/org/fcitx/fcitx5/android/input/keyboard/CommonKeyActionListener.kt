@@ -180,11 +180,12 @@ class CommonKeyActionListener :
                             toggleIme()
                         }
                         SpaceLongPressBehavior.ShowPicker -> showInputMethodPicker()
-                        SpaceLongPressBehavior.VoiceInput -> {
-                            org.fcitx.fcitx5.android.link.AsrkbSpeechClient.startMockSession(service)
-                        }
+                        SpaceLongPressBehavior.VoiceInput ->
+                            org.fcitx.fcitx5.android.link.AsrkbSpeechClient.startHoldSession(service)
                     }
                 }
+                is KeyAction.StopVoiceInputAction ->
+                    org.fcitx.fcitx5.android.link.AsrkbSpeechClient.stopHoldSession()
                 else -> {}
             }
         }
